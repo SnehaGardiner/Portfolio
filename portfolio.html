@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sneha Gardiner - Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-pink: #f8d7da;
+            --accent-pink: #e91e63;
+            --dark-pink: #c2185b;
+            --light-pink: #fce4ec;
+            --text-dark: #2c2c2c;
+            --text-light: #666;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #f8d7da 0%, #fce4ec 100%);
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--gradient);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(233, 30, 99, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-pink);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-pink);
+        }
+        
+        .mobile-menu {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--accent-pink);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            background: var(--gradient);
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-pink);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .cta-button:hover {
+            background: var(--dark-pink);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.3);
+        }
+        
+        /* Main Content */
+        main {
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+        
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--accent-pink);
+        }
+        
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(233, 30, 99, 0.15);
+            border-color: var(--primary-pink);
+        }
+        
+        .card h3 {
+            color: var(--accent-pink);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: var(--light-pink);
+            color: var(--dark-pink);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin: 2px;
+        }
+        
+        /* Skills Section */
+        .skills-category {
+            margin-bottom: 2rem;
+        }
+        
+        .skills-category h4 {
+            color: var(--accent-pink);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        /* Languages Grid */
+        .languages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .language-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(233, 30, 99, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .language-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .language-card i {
+            font-size: 3rem;
+            color: var(--accent-pink);
+            margin-bottom: 1rem;
+        }
+        
+        .language-card h3 {
+            color: var(--text-dark);
+            font-size: 1.2rem;
+        }
+        
+        /* Certifications */
+        .cert-provider {
+            margin-bottom: 2rem;
+        }
+        
+        .cert-provider h4 {
+            color: var(--accent-pink);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .cert-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .cert-list li {
+            background: white;
+            margin: 0.5rem 0;
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-pink);
+            box-shadow: 0 2px 10px rgba(233, 30, 99, 0.1);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-pink);
+            color: white;
+            border-radius: 50%;
+            line-height: 50px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--dark-pink);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+        }
+        
+        /* Scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Sneha Gardiner</div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showSection('home')" class="active">Home</a></li>
+                <li><a href="#" onclick="showSection('projects')">Projects</a></li>
+                <li><a href="#" onclick="showSection('hackathons')">Hackathons</a></li>
+                <li><a href="#" onclick="showSection('languages')">Languages</a></li>
+                <li><a href="#" onclick="showSection('certifications')">Certifications</a></li>
+                <li><a href="#" onclick="showSection('skills')">Skills</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Sneha Gardiner</h1>
+            <p>Aspiring Full-Stack Developer | Graphic Designer | Freelancer</p>
+            <button class="cta-button" onclick="showSection('projects')">View My Work</button>
+        </div>
+    </section>
+
+    <main class="container">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="section-title">Welcome to My Portfolio</div>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3><i class="fas fa-code"></i> Development</h3>
+                    <p>Passionate about creating innovative web solutions using modern technologies like React.js, Python, and Java. Always eager to learn and implement cutting-edge development practices.</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-paint-brush"></i> Design</h3>
+                    <p>Combining creativity with functionality to deliver stunning visual experiences. Proficient in Figma and Canva for creating engaging user interfaces and graphics.</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-trophy"></i> Achievements</h3>
+                    <p>Proven track record in hackathons with multiple top placements including HackIndia Spark-2 Web3 (Top 10) and GFG HackFest 2024 (2nd Place).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <div class="section-title">Projects</div>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>Unify: Decentralized Indie Gaming Workplace</h3>
+                    <p>A revolutionary platform connecting indie game developers in a decentralized ecosystem, fostering collaboration and innovation in the gaming industry.</p>
+                    <div style="margin-top: 1rem;">
+                        <span class="badge">Web3</span>
+                        <span class="badge">Blockchain</span>
+                        <span class="badge">Gaming</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>BrainCon: Mental Well-Being Website</h3>
+                    <p>A comprehensive mental health platform providing resources, tools, and support for mental well-being, designed with user-centric approach and accessibility in mind.</p>
+                    <div style="margin-top: 1rem;">
+                        <span class="badge">Healthcare</span>
+                        <span class="badge">React.js</span>
+                        <span class="badge">UX/UI</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>LunArc: SIH Problem Statement</h3>
+                    <p>An innovative solution developed for Smart India Hackathon, addressing real-world challenges with cutting-edge technology and creative problem-solving.</p>
+                    <div style="margin-top: 1rem;">
+                        <span class="badge">Innovation</span>
+                        <span class="badge">Problem Solving</span>
+                        <span class="badge">SIH 2024</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Full-Stack E-Commerce Website</h3>
+                    <p>A complete e-commerce solution with modern design, secure payment integration, and seamless user experience from frontend to backend implementation.</p>
+                    <div style="margin-top: 1rem;">
+                        <span class="badge">Full-Stack</span>
+                        <span class="badge">E-Commerce</span>
+                        <span class="badge">Payment Gateway</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hackathons Section -->
+        <section id="hackathons" class="section">
+            <div class="section-title">Hackathons</div>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>HackIndia Spark-2 Web3 🏆</h3>
+                    <p><strong>Achievement:</strong> Top 10</p>
+                    <p>Competed in one of India's premier Web3 hackathons, showcasing innovative blockchain solutions and decentralized applications.</p>
+                    <div style="margin-top: 1rem;">
+                        <span class="badge">Web3</span>
+                        <span class="badge">Blockchain</span>
+                        <span class="badge">Top 10</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>GFG HackFest 2024 🥈</h3>
+                    <p><strong>Achievement:</strong> 2nd Place</p>
+                    <p>Secured second position in GeeksforGeeks' flagship hackathon, demonstrating exceptional coding skills and innovative problem-solving.</p>
+                    <div style="margin-top: 1rem;">
+                        <span class="badge">Coding</span>
+                        <span class="badge">GeeksforGeeks</span>
+                        <span class="badge">2nd Place</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Smart India Hackathon 2024 🏅</h3>
+                    <p><strong>Achievement:</strong> Top 5 Internal Round</p>
+                    <p>Advanced to top 5 in the internal selection round of India's biggest hackathon, representing innovative solutions for national challenges.</p>
+                    <div style="margin-top: 1rem;">
+                        <span class="badge">SIH</span>
+                        <span class="badge">Innovation</span>
+                        <span class="badge">Top 5</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Languages Section -->
+        <section id="languages" class="section">
+            <div class="section-title">Languages</div>
+            <div class="languages-grid">
+                <div class="language-card">
+                    <i class="fas fa-globe-americas"></i>
+                    <h3>English</h3>
+                    <p>Native/Fluent</p>
+                </div>
+                <div class="language-card">
+                    <i class="fas fa-wine-glass"></i>
+                    <h3>French</h3>
+                    <p>Conversational</p>
+                </div>
+                <div class="language-card">
+                    <i class="fas fa-om"></i>
+                    <h3>Hindi</h3>
+                    <p>Native/Fluent</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="section">
+            <div class="section-title">Certifications</div>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="cert-provider">
+                        <h4>HackerRank</h4>
+                        <ul class="cert-list">
+                            <li>Python Basic Certification</li>
+                            <li>Java Basic Certification</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="cert-provider">
+                        <h4>Udemy</h4>
+                        <ul class="cert-list">
+                            <li>Artificial Intelligence Bootcamp</li>
+                            <li>Concepts of IoT</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="cert-provider">
+                        <h4>Forage</h4>
+                        <ul class="cert-list">
+                            <li>Deloitte Virtual Experience</li>
+                            <li>Walmart Global Tech</li>
+                            <li>AWS Virtual Experience</li>
+                            <li>TATA Virtual Experience</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+            <div class="section-title">Skills</div>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="skills-category">
+                        <h4>Programming Languages</h4>
+                        <div class="skills-list">
+                            <span class="badge">C</span>
+                            <span class="badge">C++</span>
+                            <span class="badge">Python</span>
+                            <span class="badge">Java</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="skills-category">
+                        <h4>Front-end Frameworks</h4>
+                        <div class="skills-list">
+                            <span class="badge">React.js</span>
+                            <span class="badge">Tailwind CSS</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="skills-category">
+                        <h4>Tools/Platforms</h4>
+                        <div class="skills-list">
+                            <span class="badge">Git</span>
+                            <span class="badge">GitHub</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="skills-category">
+                        <h4>Design</h4>
+                        <div class="skills-list">
+                            <span class="badge">Canva</span>
+                            <span class="badge">Figma</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="skills-category">
+                        <h4>Soft Skills</h4>
+                        <div class="skills-list">
+                            <span class="badge">Leadership</span>
+                            <span class="badge">Public Speaking</span>
+                            <span class="badge">Teamwork</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p>&copy; 2025 Sneha Gardiner. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showSection(sectionName) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show the selected section
+            const targetSection = document.getElementById(sectionName);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+            
+            // Update navigation active state
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            event.target.classList.add('active');
+            
+            // Scroll to top of main content
+            document.querySelector('main').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Mobile menu functionality
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // Add smooth scrolling and animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add loading animation
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
